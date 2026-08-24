@@ -1,0 +1,14 @@
+{
+  "name": "career-compass-monorepo",
+  "version": "1.0.0",
+  "description": "Career Compass - AI-Powered Resume Analyzer & ATS Score Checker",
+  "scripts": {
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client",
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "seed": "npm run seed --prefix server",
+    "build": "npm run build --prefix client"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
