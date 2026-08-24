@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Custom SVG Compass & Gauge Dial Component - Clean Light Mode
+ * Custom SVG Compass & Gauge Dial Component - Fully Responsive Light Mode
  */
 export default function CompassGauge({ score = 0, verdict = 'Needs work' }) {
   const normalizedScore = Math.min(100, Math.max(0, Number(score) || 0));
@@ -57,14 +57,14 @@ export default function CompassGauge({ score = 0, verdict = 'Needs work' }) {
   }
 
   return (
-    <div className="clean-card p-6 rounded-2xl flex flex-col items-center justify-center relative overflow-hidden bg-white shadow-card">
+    <div className="clean-card p-4 sm:p-6 rounded-2xl flex flex-col items-center justify-center relative overflow-hidden bg-white shadow-card w-full">
       {/* Header Badge */}
       <div className="w-full flex items-center justify-between text-xs font-mono text-slateCustom mb-2">
         <span className="uppercase tracking-widest text-[10px] text-brass font-bold">Compass Dial</span>
-        <span className="text-[10px] text-slateCustom font-semibold">100% Calibrated</span>
+        <span className="text-[10px] text-slateCustom font-semibold hidden sm:inline">100% Calibrated</span>
       </div>
 
-      <div className="relative w-full max-w-[280px] h-[175px]">
+      <div className="relative w-full max-w-[280px] aspect-[300/175]">
         <svg viewBox="0 0 300 170" className="w-full h-full">
           <defs>
             <filter id="needleGlow" x="-20%" y="-20%" width="140%" height="140%">
@@ -138,11 +138,11 @@ export default function CompassGauge({ score = 0, verdict = 'Needs work' }) {
       {/* Score Reading & Verdict */}
       <div className="flex flex-col items-center mt-2 z-10">
         <div className="flex items-baseline gap-1">
-          <span className="font-mono text-5xl font-extrabold text-navy tracking-tight">{normalizedScore}%</span>
-          <span className="text-xs font-mono text-slateCustom uppercase tracking-wider">ATS Score</span>
+          <span className="font-mono text-4xl sm:text-5xl font-extrabold text-navy tracking-tight">{normalizedScore}%</span>
+          <span className="text-[10px] sm:text-xs font-mono text-slateCustom uppercase tracking-wider">ATS Score</span>
         </div>
 
-        <div className={`mt-2.5 px-3.5 py-1 text-xs font-mono font-bold rounded-md border uppercase tracking-wider ${verdictColorClass}`}>
+        <div className={`mt-2 px-3.5 py-1 text-xs font-mono font-bold rounded-md border uppercase tracking-wider ${verdictColorClass}`}>
           {verdict}
         </div>
       </div>

@@ -137,24 +137,24 @@ export default function AnalyzePage() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto space-y-10 py-6">
+    <div className="max-w-6xl mx-auto space-y-8 sm:space-y-10 py-4 sm:py-6 px-2 sm:px-4">
       {/* Page Header */}
-      <div className="border-b border-hairline pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="border-b border-hairline pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-xs text-brass font-bold uppercase tracking-widest">Multi-Pillar Engine</span>
-            <span className="text-slateCustom">•</span>
-            <span className="font-mono text-xs text-slateCustom">High-Precision ATS Tracking</span>
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="font-mono text-[11px] text-brass font-bold uppercase tracking-widest">Multi-Pillar Engine</span>
+            <span className="text-slateCustom text-xs">•</span>
+            <span className="font-mono text-[11px] text-slateCustom">High-Precision ATS Tracking</span>
           </div>
-          <h1 className="font-serif text-3xl font-bold text-navy mt-1">
+          <h1 className="font-serif text-2xl sm:text-3xl font-bold text-navy mt-1">
             Resume & ATS Score Intelligence
           </h1>
         </div>
         
         {resumeData && (
-          <div className="flex items-center gap-2 bg-white px-3.5 py-1.5 rounded-lg border border-hairline text-xs font-mono text-slateCustom shadow-xs">
-            <CheckCircle2 className="w-4 h-4 text-successGreen" />
-            <span>Active Resume: <strong className="text-navy">{resumeData.originalName}</strong></span>
+          <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-hairline text-xs font-mono text-slateCustom shadow-xs self-start sm:self-auto max-w-full truncate">
+            <CheckCircle2 className="w-4 h-4 text-successGreen shrink-0" />
+            <span className="truncate">Active: <strong className="text-navy">{resumeData.originalName}</strong></span>
           </div>
         )}
       </div>
@@ -168,24 +168,24 @@ export default function AnalyzePage() {
       )}
 
       {/* Main Input Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
         
         {/* LEFT COLUMN: Resume Upload */}
-        <div className="clean-card p-6 rounded-2xl space-y-5 flex flex-col justify-between bg-white shadow-card">
+        <div className="clean-card p-4 sm:p-6 rounded-2xl space-y-5 flex flex-col justify-between bg-white shadow-card">
           <div className="space-y-4">
             <div className="flex items-center justify-between border-b border-hairline pb-3">
               <div className="flex items-center gap-2">
-                <UploadCloud className="w-5 h-5 text-brass" />
+                <UploadCloud className="w-5 h-5 text-brass shrink-0" />
                 <h2 className="font-serif text-base font-bold text-navy">1. Upload Resume Document</h2>
               </div>
-              <span className="font-mono text-[11px] text-slateCustom">PDF or DOCX (Max 10MB)</span>
+              <span className="font-mono text-[10px] sm:text-[11px] text-slateCustom">PDF / DOCX (10MB)</span>
             </div>
 
             {/* Drag & Drop Box */}
             <div
               onDragOver={handleDragOver}
               onDrop={handleDrop}
-              className={`border-2 border-dashed rounded-xl p-6 text-center transition-all flex flex-col items-center justify-center min-h-[180px] ${
+              className={`border-2 border-dashed rounded-xl p-4 sm:p-6 text-center transition-all flex flex-col items-center justify-center min-h-[160px] sm:min-h-[180px] ${
                 file
                   ? 'border-brass bg-brass/5'
                   : 'border-hairline bg-offwhite/50 hover:border-brass/60 hover:bg-white'
@@ -202,7 +202,7 @@ export default function AnalyzePage() {
               {file ? (
                 <div className="space-y-2">
                   <FileText className="w-10 h-10 text-brass mx-auto" />
-                  <div className="font-mono text-xs font-bold text-navy">{file.name}</div>
+                  <div className="font-mono text-xs font-bold text-navy break-all">{file.name}</div>
                   <div className="font-mono text-[11px] text-slateCustom">
                     {(file.size / 1024).toFixed(1)} KB • {file.name.split('.').pop().toUpperCase()}
                   </div>
@@ -215,9 +215,9 @@ export default function AnalyzePage() {
                 </div>
               ) : (
                 <label htmlFor="resume-file-input" className="cursor-pointer space-y-2">
-                  <UploadCloud className="w-10 h-10 text-slateCustom/60 mx-auto" />
+                  <UploadCloud className="w-9 h-9 sm:w-10 sm:h-10 text-slateCustom/60 mx-auto" />
                   <div className="font-sans text-xs font-semibold text-navy">
-                    Drag & drop your resume file here, or <span className="text-brass underline">browse</span>
+                    Drag & drop resume here, or <span className="text-brass underline">browse</span>
                   </div>
                   <div className="font-mono text-[11px] text-slateCustom">
                     Supports .pdf, .docx, and .txt files
@@ -227,21 +227,21 @@ export default function AnalyzePage() {
             </div>
 
             {/* Upload Button */}
-            <div className="pt-2 flex items-center gap-3">
+            <div className="pt-2 flex items-center gap-2 sm:gap-3">
               <button
                 onClick={handleUpload}
                 disabled={!file || uploading}
-                className="flex-1 py-2.5 px-4 rounded-lg font-mono text-xs font-bold uppercase tracking-wider bg-navy text-white hover:bg-navy-dark disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-brass"
+                className="flex-1 py-2.5 px-3 sm:px-4 rounded-lg font-mono text-xs font-bold uppercase tracking-wider bg-navy text-white hover:bg-navy-dark disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-brass"
               >
                 {uploading ? (
                   <>
-                    <RefreshCw className="w-4 h-4 animate-spin text-brass" />
-                    Parsing Resume...
+                    <RefreshCw className="w-4 h-4 animate-spin text-brass shrink-0" />
+                    <span className="truncate">Parsing...</span>
                   </>
                 ) : (
                   <>
-                    <FileCode2 className="w-4 h-4 text-brass" />
-                    Parse & Extract Text
+                    <FileCode2 className="w-4 h-4 text-brass shrink-0" />
+                    <span>Parse Text</span>
                   </>
                 )}
               </button>
@@ -249,7 +249,7 @@ export default function AnalyzePage() {
               {resumeData && (
                 <button
                   onClick={() => setShowExtractedText(!showExtractedText)}
-                  className="py-2.5 px-3 rounded-lg font-mono text-xs border border-hairline bg-offwhite hover:bg-white text-navy flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-brass"
+                  className="py-2.5 px-3 rounded-lg font-mono text-xs border border-hairline bg-offwhite hover:bg-white text-navy flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-brass shrink-0"
                   title="View parsed text"
                 >
                   <Eye className="w-4 h-4 text-brass" />
@@ -261,14 +261,14 @@ export default function AnalyzePage() {
             {/* Upload Status Card */}
             {resumeData && (
               <div className="p-3.5 rounded-lg border border-successGreen/30 bg-successGreen/5 space-y-1.5">
-                <div className="flex items-center justify-between text-xs font-mono text-successGreen font-bold">
+                <div className="flex items-center justify-between text-xs font-mono text-successGreen font-bold flex-wrap gap-1">
                   <span className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4" /> Text Extracted Successfully
+                    <CheckCircle2 className="w-4 h-4 shrink-0" /> Extracted Successfully
                   </span>
                   <span>{resumeData.wordCount} Words</span>
                 </div>
                 <p className="text-[11px] font-mono text-slateCustom">
-                  Detected Sections: {Object.entries(resumeData.detectedSections || {})
+                  Sections: {Object.entries(resumeData.detectedSections || {})
                     .filter(([_, v]) => v)
                     .map(([k]) => k)
                     .join(', ') || 'General Text'}
@@ -282,7 +282,7 @@ export default function AnalyzePage() {
                 <div className="text-brass font-bold uppercase border-b border-navy-light pb-1 mb-1">
                   Raw Extracted Resume Text:
                 </div>
-                <pre className="whitespace-pre-wrap font-mono leading-relaxed text-slate-300">
+                <pre className="whitespace-pre-wrap font-mono leading-relaxed text-slate-300 text-[10px] sm:text-[11px]">
                   {resumeData.extractedText}
                 </pre>
               </div>
@@ -291,11 +291,11 @@ export default function AnalyzePage() {
         </div>
 
         {/* RIGHT COLUMN: Job Description Input */}
-        <div className="clean-card p-6 rounded-2xl space-y-4 flex flex-col justify-between bg-white shadow-card">
+        <div className="clean-card p-4 sm:p-6 rounded-2xl space-y-4 flex flex-col justify-between bg-white shadow-card">
           <div className="space-y-4">
             <div className="flex items-center justify-between border-b border-hairline pb-3">
               <div className="flex items-center gap-2">
-                <Briefcase className="w-5 h-5 text-brass" />
+                <Briefcase className="w-5 h-5 text-brass shrink-0" />
                 <h2 className="font-serif text-base font-bold text-navy">2. Target Job Description</h2>
               </div>
               <span className="font-mono text-[11px] text-slateCustom">Pasted Text</span>
@@ -318,7 +318,7 @@ export default function AnalyzePage() {
             {/* Quick Presets */}
             <div>
               <div className="flex items-center gap-1.5 mb-1.5">
-                <Zap className="w-3.5 h-3.5 text-brass" />
+                <Zap className="w-3.5 h-3.5 text-brass shrink-0" />
                 <span className="font-mono text-[11px] font-semibold text-slateCustom uppercase">Quick Demo Samples:</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
@@ -327,7 +327,7 @@ export default function AnalyzePage() {
                     key={idx}
                     type="button"
                     onClick={() => applyPresetJD(preset)}
-                    className="px-2.5 py-1 text-[11px] font-mono rounded-md border border-hairline bg-offwhite hover:bg-brass hover:text-white transition-colors"
+                    className="px-2.5 py-1 text-[10px] sm:text-[11px] font-mono rounded-md border border-hairline bg-offwhite hover:bg-brass hover:text-white transition-colors"
                   >
                     {preset.title.split(' ')[0]} {preset.title.split(' ')[1]}
                   </button>
@@ -341,7 +341,7 @@ export default function AnalyzePage() {
                 Paste Full Job Description
               </label>
               <textarea
-                rows={7}
+                rows={6}
                 placeholder="Paste the complete job description, requirements, responsibilities, and skill sets here..."
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
@@ -355,17 +355,17 @@ export default function AnalyzePage() {
             <button
               onClick={handleAnalyze}
               disabled={!resumeData || !jobDescription || analyzing}
-              className="w-full py-3 px-6 rounded-lg font-mono text-xs font-bold uppercase tracking-wider bg-brass text-white hover:bg-brass-dark disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-brass"
+              className="w-full py-3 px-4 sm:px-6 rounded-lg font-mono text-xs font-bold uppercase tracking-wider bg-brass text-white hover:bg-brass-dark disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-brass"
             >
               {analyzing ? (
                 <>
-                  <RefreshCw className="w-4 h-4 animate-spin text-white" />
-                  Analyzing Keyword Overlap & ATS Pillars...
+                  <RefreshCw className="w-4 h-4 animate-spin text-white shrink-0" />
+                  <span className="truncate">Analyzing Keywords & ATS...</span>
                 </>
               ) : (
                 <>
-                  <Sparkles className="w-4 h-4" />
-                  Run Precision ATS Audit & Score
+                  <Sparkles className="w-4 h-4 shrink-0" />
+                  <span>Run Precision ATS Audit</span>
                 </>
               )}
             </button>
@@ -376,65 +376,66 @@ export default function AnalyzePage() {
 
       {/* RESULTS DISPLAY SECTION */}
       {analysisResult && (
-        <div id="analysis-results-section" className="space-y-8 pt-8 border-t border-hairline animate-fade-in-up">
+        <div id="analysis-results-section" className="space-y-6 sm:space-y-8 pt-8 border-t border-hairline animate-fade-in-up">
           
           {/* Header & Tab Selector */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div>
               <span className="font-mono text-xs text-brass font-bold uppercase tracking-widest">
                 ATS Audit Report
               </span>
-              <h2 className="font-serif text-2xl font-bold text-navy">
+              <h2 className="font-serif text-xl sm:text-2xl font-bold text-navy">
                 Diagnostics & Compatibility Breakdown
               </h2>
             </div>
 
-            {/* View Navigation Tabs */}
-            <div className="flex items-center gap-2 bg-white p-1 rounded-lg border border-hairline font-mono text-xs shadow-xs">
+            {/* View Navigation Tabs & CTA */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <div className="flex items-center gap-1 bg-white p-1 rounded-lg border border-hairline font-mono text-xs shadow-xs overflow-x-auto">
+                <button
+                  onClick={() => setViewTab('dashboard')}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all whitespace-nowrap ${
+                    viewTab === 'dashboard' ? 'bg-navy text-white font-bold shadow-xs' : 'text-slateCustom hover:text-navy'
+                  }`}
+                >
+                  <BarChart2 className="w-3.5 h-3.5 text-brass" />
+                  Dashboard
+                </button>
+                <button
+                  onClick={() => setViewTab('keywords')}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all whitespace-nowrap ${
+                    viewTab === 'keywords' ? 'bg-navy text-white font-bold shadow-xs' : 'text-slateCustom hover:text-navy'
+                  }`}
+                >
+                  <Target className="w-3.5 h-3.5 text-brass" />
+                  Keywords
+                </button>
+                <button
+                  onClick={() => setViewTab('suggestions')}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all whitespace-nowrap ${
+                    viewTab === 'suggestions' ? 'bg-navy text-white font-bold shadow-xs' : 'text-slateCustom hover:text-navy'
+                  }`}
+                >
+                  <Lightbulb className="w-3.5 h-3.5 text-brass" />
+                  Action Items
+                </button>
+              </div>
+
               <button
-                onClick={() => setViewTab('dashboard')}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all ${
-                  viewTab === 'dashboard' ? 'bg-navy text-white font-bold shadow-xs' : 'text-slateCustom hover:text-navy'
-                }`}
+                onClick={() => navigate(`/jobs?resumeId=${analysisResult.resumeId}`)}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-mono text-xs font-bold uppercase tracking-wider bg-navy text-white hover:bg-navy-dark transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-brass"
               >
-                <BarChart2 className="w-3.5 h-3.5 text-brass" />
-                Dashboard Overview
-              </button>
-              <button
-                onClick={() => setViewTab('keywords')}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all ${
-                  viewTab === 'keywords' ? 'bg-navy text-white font-bold shadow-xs' : 'text-slateCustom hover:text-navy'
-                }`}
-              >
-                <Target className="w-3.5 h-3.5 text-brass" />
-                Keyword Audit
-              </button>
-              <button
-                onClick={() => setViewTab('suggestions')}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md transition-all ${
-                  viewTab === 'suggestions' ? 'bg-navy text-white font-bold shadow-xs' : 'text-slateCustom hover:text-navy'
-                }`}
-              >
-                <Lightbulb className="w-3.5 h-3.5 text-brass" />
-                Action Items
+                <Briefcase className="w-4 h-4 text-brass" />
+                Matched Jobs
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
-
-            {/* Link to Job Recommendations */}
-            <button
-              onClick={() => navigate(`/jobs?resumeId=${analysisResult.resumeId}`)}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-mono text-xs font-bold uppercase tracking-wider bg-navy text-white hover:bg-navy-dark transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-brass"
-            >
-              <Briefcase className="w-4 h-4 text-brass" />
-              Matched Jobs
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
           </div>
 
           {/* TAB 1: DASHBOARD OVERVIEW */}
           {viewTab === 'dashboard' && (
-            <div className="space-y-8">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div className="space-y-6 sm:space-y-8">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
                 <div className="lg:col-span-5 flex">
                   <div className="w-full">
                     <CompassGauge
